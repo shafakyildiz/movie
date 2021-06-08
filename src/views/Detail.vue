@@ -4,8 +4,6 @@
   </div>
 </template>
 
-
-
 <script>
 import { useRoute } from "vue-router";
 // import env from "@/env.js";
@@ -24,7 +22,6 @@ export default {
   },
   mounted() {
     const route = useRoute();
-    console.log(route.params.id);
     const id = route.params.id;
     this.movie = movies.filter((movie) => movie.id === id)[0];
   },

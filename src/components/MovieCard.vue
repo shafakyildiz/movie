@@ -5,9 +5,7 @@
       <img :src="movie.poster" alt="Movie Poster" />
     </div>
     <h1>{{ movie.title }}</h1>
-    <br />
     <h3>{{ movie.overview }}</h3>
-    <p>Genres: {{ movie.genres }}</p>
     <br />
   </div>
 </template>
