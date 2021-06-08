@@ -7,7 +7,6 @@
 
 
 <script>
-// import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 // import env from "@/env.js";
 import movies from "./movies.json";
