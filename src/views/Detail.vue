@@ -1,19 +1,6 @@
 <template>
   <div class="movie-detail">
-    <!-- <h2>{{ movie.Title }}</h2>
-    <p>{{ movie.Year }}</p>
-    <img :src="movie.Poster" alt="Movie Poster" class="featured-img" />
-    <p>{{ movie.Plot }}</p>
-    <br />
-    <p>Starring: {{ movie.Actors }}</p>
-    <br />
-    <p>Directed by: {{ movie.Director }}</p>
-    <br />
-    <p>IMDB Rating: {{ movie.imdbRating }}</p> -->
-
     <MovieCard :movie="movie" />
-    <!-- <h1>{{ item.title }}</h1> -->
-    <!-- <img src="item.poster" alt="" srcset="" /> -->
   </div>
 </template>
 
