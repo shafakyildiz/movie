@@ -32,20 +32,22 @@
         </span>
       </div>
       <div id="movie-list">
-        <ul style="list-style-type: none">
-          <li v-for="item in randomMovies" :key="item.id">
-            <router-link :to="{ name: 'Detail', params: { id: item.id } }">
-              <img :src="item.poster.toString()" />
-            </router-link>
+        <div class="movie-card">
+          <ul style="list-style-type: none">
+            <li v-for="item in randomMovies" :key="item.id">
+              <router-link :to="{ name: 'Detail', params: { id: item.id } }">
+                <img :src="item.poster.toString()" />
+              </router-link>
 
-            <figcaption>
-              <h2>
-                {{ item.title }}
-              </h2>
-            </figcaption>
-            <br />
-          </li>
-        </ul>
+              <figcaption>
+                <h2>
+                  {{ item.title }}
+                </h2>
+              </figcaption>
+              <br />
+            </li>
+          </ul>
+        </div>
       </div>
       <br />
     </div>
@@ -288,6 +290,8 @@ button {
   .form {
     #movie-list {
       display: flex;
+      flex-direction: row;
+      flex: wrap;
       flex-direction: column;
       justify-content: center;
       align-items: center;
