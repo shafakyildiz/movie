@@ -2,8 +2,23 @@
   <div class="home">
     <div class="form">
       <br />
-      <input type="text" v-model="searchMovies" /><br /><br />
+      <div class="input-sort">
+        <input type="text" v-model="searchMovies" />
+        <div class="dropdown">
+          <button class="dropbtn">Filmleri Sırala</button>
+          <div class="dropdown-content">
+            <a href="#">Ada göre (A-Z)</a>
+            <a href="#">Ada göre (Z-A)</a>
 
+            <a href="#">Çıkış Tarihine göre (Azalan)</a>
+            <a href="#">Çıkış Tarihine göre (Artan)</a>
+
+            <a href="#">ID'ye göre (Azalan) </a>
+            <a href="#">ID'ye göre (Artan)</a>
+          </div>
+        </div>
+        <br /><br />
+      </div>
       <div v-if="searchMovies !== ''" class="autocomplete-popup">
         <span v-for="item in getDataFilter" :key="item.id">
           <router-link :to="{ name: 'Detail', params: { id: item.id } }">
@@ -36,7 +51,6 @@
 // @ is an alias to /src
 // import { ref } from "vue";
 // import env from "@/env.js";
-import axios from "axios";
 import movies from "./movies.json";
 
 export default {
@@ -49,21 +63,22 @@ export default {
   },
   props: {},
 
-  methods: {
-    showMovie() {
-      axios
-        .get(`http://www.omdbapi.com/?apikey=553c1f83&s=${this.searchMovies}`)
-        .then((response) => {
-          console.log(response.data.Search[0]);
-        });
-    },
-  },
-
   mounted() {
     this.movie = movies.map((item) => item.title);
     // console.log((this.movie = movies.slice(0, 20).map((item) => item.title)));
     this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
     console.log(this.randomMovies);
+  },
+  methods: {
+    sortedArray: function () {
+      function compare(a, b) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      }
+      console.log(this.randomMovies.sort(compare));
+      return this.randomMovies.sort(compare);
+    },
   },
 
   computed: {
@@ -80,6 +95,54 @@ export default {
 </script>
 
 <style lang="scss">
+/* Dropdown Button */
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
 figcaption {
   text-align: center;
 }
@@ -92,7 +155,14 @@ figcaption {
   flex-direction: column;
   align-items: flex-start;
   border: 1px solid #eee;
+  a {
+    color: #f3f3f3;
 
+    &:hover {
+      color: yellow;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+  }
   div {
     padding: 5px 0px 5px 5px;
   }
