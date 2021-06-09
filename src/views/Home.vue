@@ -53,9 +53,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import { ref } from "vue";
-// import env from "@/env.js";
 import movies from "./movies.json";
 
 export default {
@@ -85,6 +82,7 @@ export default {
 
       console.log(myTarget);
       myTarget.sort(function (a, b) {
+        // sort alphabetically
         var nameA = a.title.toUpperCase(); // ignore upper and lowercase
         var nameB = b.title.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -100,6 +98,8 @@ export default {
       this.randomMovies = myTarget;
     },
     sortAlphabetReverse() {
+      // sort alphabetically reverse
+
       this.movie = movies.map((item) => item.title);
 
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
@@ -375,65 +375,5 @@ button {
       }
     }
   }
-  // .movie-list {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   margin: 0px 8px;
-
-  //   .movie {
-  //     max-width: 50%;
-  //     flex: 1 1 50%;
-  //     padding: 16px 8px;
-
-  //     .movie-link {
-  //       display: flex;
-  //       flex-direction: column;
-  //       height: 100%;
-
-  //       .product-image {
-  //         position: relative;
-  //         display: block;
-
-  //         img {
-  //           display: block;
-  //           width: 100%;
-  //           height: 275px;
-  //           object-fit: cover;
-  //         }
-
-  //         .type {
-  //           position: absolute;
-  //           padding: 8px 16px;
-  //           background-color: #42b883;
-  //           color: #fff;
-  //           bottom: 16px;
-  //           left: 0px;
-  //           text-transform: capitalize;
-  //         }
-  //       }
-
-  //       .detail {
-  //         background-color: #496583;
-  //         padding: 16px 8px;
-  //         flex: 1 1 100%;
-  //         border-radius: 0px 0px 8px 8px;
-
-  //         .year {
-  //           color: rgb(255, 255, 255);
-  //           font-size: 14px;
-  //         }
-
-  //         h3 {
-  //           color: #fff;
-  //           font-weight: 600;
-  //           font-size: 18px;
-  //         }
-  //         a {
-  //           color: #fff;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 }
 </style>
