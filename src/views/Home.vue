@@ -3,18 +3,23 @@
     <div class="form">
       <br />
       <div class="input-sort">
-        <input type="text" v-model="searchMovies" />
+        <input
+          type="text"
+          v-model="searchMovies"
+          placeholder="Search a movie..."
+          class="search-input"
+        />
         <div class="dropdown">
           <button class="dropbtn">Filmleri Sırala</button>
           <div class="dropdown-content">
-            <a href="#">Ada göre (A-Z)</a>
-            <a href="#">Ada göre (Z-A)</a>
+            <a href="#" @click="sortAlphabet">Ada göre (A-Z)</a>
+            <a href="#" @click="sortAlphabetReverse">Ada göre (Z-A)</a>
 
-            <a href="#">Çıkış Tarihine göre (Azalan)</a>
-            <a href="#">Çıkış Tarihine göre (Artan)</a>
+            <a href="#" @click="sortDateDesc">Çıkış Tarihine göre (Artan)</a>
+            <a href="#" @click="sortDateAsc">Çıkış Tarihine göre (Azalan)</a>
 
-            <a href="#">ID'ye göre (Azalan) </a>
-            <a href="#">ID'ye göre (Artan)</a>
+            <a href="#" @click="sortIdDesc">ID'ye göre (Artan) </a>
+            <a href="#" @click="sortIdAsc">ID'ye göre (Azalan)</a>
           </div>
         </div>
         <br /><br />
@@ -67,17 +72,103 @@ export default {
     this.movie = movies.map((item) => item.title);
     // console.log((this.movie = movies.slice(0, 20).map((item) => item.title)));
     this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
-    console.log(this.randomMovies);
+    let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+    console.log(myTarget);
   },
+
   methods: {
-    sortedArray: function () {
-      function compare(a, b) {
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
+    sortAlphabet() {
+      this.movie = movies.map((item) => item.title);
+
+      this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+      let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+
+      console.log(myTarget);
+      myTarget.sort(function (a, b) {
+        var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        // names must be equal
         return 0;
-      }
-      console.log(this.randomMovies.sort(compare));
-      return this.randomMovies.sort(compare);
+      });
+    },
+    sortAlphabetReverse() {
+      this.movie = movies.map((item) => item.title);
+
+      this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+      let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+
+      console.log(myTarget);
+      myTarget.sort(function (a, b) {
+        var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+        if (nameA > nameB) {
+          return -1;
+        }
+        if (nameA < nameB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      });
+    },
+
+    sortDateDesc() {
+      // sort by date
+      this.movie = movies.map((item) => item.title);
+
+      this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+      let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+
+      console.log(myTarget);
+      myTarget.sort(function (a, b) {
+        return a.release_date - b.release_date;
+      });
+    },
+
+    sortDateAsc() {
+      // sort by date
+      this.movie = movies.map((item) => item.title);
+
+      this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+      let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+
+      console.log(myTarget);
+      myTarget.sort(function (a, b) {
+        return b.release_date - a.release_date;
+      });
+    },
+    sortIdDesc() {
+      // sort by id
+      this.movie = movies.map((item) => item.title);
+
+      this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+      let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+
+      console.log(myTarget);
+      myTarget.sort(function (a, b) {
+        return a.id - b.id;
+      });
+    },
+
+    sortIdAsc() {
+      // sort by id
+      this.movie = movies.map((item) => item.title);
+
+      this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+      let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
+
+      console.log(myTarget);
+      myTarget.sort(function (a, b) {
+        return b.id - a.id;
+      });
     },
   },
 
