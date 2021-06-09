@@ -97,6 +97,7 @@ export default {
         // names must be equal
         return 0;
       });
+      this.randomMovies = myTarget;
     },
     sortAlphabetReverse() {
       this.movie = movies.map((item) => item.title);
@@ -118,6 +119,7 @@ export default {
         // names must be equal
         return 0;
       });
+      this.randomMovies = myTarget;
     },
 
     sortDateDesc() {
@@ -131,6 +133,7 @@ export default {
       myTarget.sort(function (a, b) {
         return a.release_date - b.release_date;
       });
+      this.randomMovies = myTarget;
     },
 
     sortDateAsc() {
@@ -144,6 +147,7 @@ export default {
       myTarget.sort(function (a, b) {
         return b.release_date - a.release_date;
       });
+      this.randomMovies = myTarget;
     },
     sortIdDesc() {
       // sort by id
@@ -156,6 +160,7 @@ export default {
       myTarget.sort(function (a, b) {
         return a.id - b.id;
       });
+      this.randomMovies = myTarget;
     },
 
     sortIdAsc() {
@@ -169,6 +174,7 @@ export default {
       myTarget.sort(function (a, b) {
         return b.id - a.id;
       });
+      this.randomMovies = myTarget;
     },
   },
 
