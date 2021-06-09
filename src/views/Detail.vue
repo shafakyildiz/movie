@@ -20,6 +20,7 @@ export default {
   components: {
     MovieCard,
   },
+
   mounted() {
     const route = useRoute();
     const id = route.params.id;

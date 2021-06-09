@@ -2,14 +2,8 @@
   <div class="home">
     <div class="form">
       <br />
-      <input type="text" v-model="searchMovies" />
-      <!-- <div v-if="searchMovies !== ''" class="autocomplete-popup">
-        <span v-for="item in getDataFilter" :key="item.id">
-          <router-link :to="`/detail/${item.id}`">
-            <div @click="searchMovies = item.title">{{ item.title }}</div>
-          </router-link>
-        </span>
-      </div> -->
+      <input type="text" v-model="searchMovies" /><br /><br />
+
       <div v-if="searchMovies !== ''" class="autocomplete-popup">
         <span v-for="item in getDataFilter" :key="item.id">
           <router-link :to="{ name: 'Detail', params: { id: item.id } }">
@@ -18,11 +12,20 @@
         </span>
       </div>
       <div id="movie-list">
-        <span v-for="item in getDataFilter" :key="item.id">
-          <router-link :to="`/detail/${item.id}`">
-            <!-- <div @click="searchMovies = item.title">{{ item.Poster }}</div> -->
-          </router-link>
-        </span>
+        <ul style="list-style-type: none">
+          <li v-for="item in randomMovies" :key="item.id">
+            <router-link :to="{ name: 'Detail', params: { id: item.id } }">
+              <img :src="item.poster.toString()" />
+            </router-link>
+
+            <figcaption>
+              <h2>
+                {{ item.title }}
+              </h2>
+            </figcaption>
+            <br />
+          </li>
+        </ul>
       </div>
       <br />
     </div>
@@ -35,14 +38,13 @@
 // import env from "@/env.js";
 import axios from "axios";
 import movies from "./movies.json";
-const movieList = document.getElementById("movie-list");
 
 export default {
   data() {
     return {
       movies1: movies,
-      movieList: movieList,
       searchMovies: "",
+      randomMovies: [],
     };
   },
   props: {},
@@ -55,6 +57,13 @@ export default {
           console.log(response.data.Search[0]);
         });
     },
+  },
+
+  mounted() {
+    this.movie = movies.map((item) => item.title);
+    // console.log((this.movie = movies.slice(0, 20).map((item) => item.title)));
+    this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
+    console.log(this.randomMovies);
   },
 
   computed: {
@@ -71,6 +80,9 @@ export default {
 </script>
 
 <style lang="scss">
+figcaption {
+  text-align: center;
+}
 .autocomplete-popup {
   width: 30%;
   height: 400px;
@@ -106,6 +118,15 @@ button {
   font-size: 16px;
 }
 .home {
+  .form {
+    #movie-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+  }
   .feature-card {
     position: relative;
 
@@ -187,65 +208,65 @@ button {
       }
     }
   }
-  .movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0px 8px;
+  // .movie-list {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   margin: 0px 8px;
 
-    .movie {
-      max-width: 50%;
-      flex: 1 1 50%;
-      padding: 16px 8px;
+  //   .movie {
+  //     max-width: 50%;
+  //     flex: 1 1 50%;
+  //     padding: 16px 8px;
 
-      .movie-link {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+  //     .movie-link {
+  //       display: flex;
+  //       flex-direction: column;
+  //       height: 100%;
 
-        .product-image {
-          position: relative;
-          display: block;
+  //       .product-image {
+  //         position: relative;
+  //         display: block;
 
-          img {
-            display: block;
-            width: 100%;
-            height: 275px;
-            object-fit: cover;
-          }
+  //         img {
+  //           display: block;
+  //           width: 100%;
+  //           height: 275px;
+  //           object-fit: cover;
+  //         }
 
-          .type {
-            position: absolute;
-            padding: 8px 16px;
-            background-color: #42b883;
-            color: #fff;
-            bottom: 16px;
-            left: 0px;
-            text-transform: capitalize;
-          }
-        }
+  //         .type {
+  //           position: absolute;
+  //           padding: 8px 16px;
+  //           background-color: #42b883;
+  //           color: #fff;
+  //           bottom: 16px;
+  //           left: 0px;
+  //           text-transform: capitalize;
+  //         }
+  //       }
 
-        .detail {
-          background-color: #496583;
-          padding: 16px 8px;
-          flex: 1 1 100%;
-          border-radius: 0px 0px 8px 8px;
+  //       .detail {
+  //         background-color: #496583;
+  //         padding: 16px 8px;
+  //         flex: 1 1 100%;
+  //         border-radius: 0px 0px 8px 8px;
 
-          .year {
-            color: rgb(255, 255, 255);
-            font-size: 14px;
-          }
+  //         .year {
+  //           color: rgb(255, 255, 255);
+  //           font-size: 14px;
+  //         }
 
-          h3 {
-            color: #fff;
-            font-weight: 600;
-            font-size: 18px;
-          }
-          a {
-            color: #fff;
-          }
-        }
-      }
-    }
-  }
+  //         h3 {
+  //           color: #fff;
+  //           font-weight: 600;
+  //           font-size: 18px;
+  //         }
+  //         a {
+  //           color: #fff;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 </style>
