@@ -23,6 +23,14 @@
           </div>
         </div>
       </div>
+
+      <div v-if="searchMovies !== ''" class="autocomplete-popup">
+        <span v-for="item in getDataFilter" :key="item.id">
+          <router-link :to="{ name: 'Detail', params: { id: item.id } }">
+            <div @click="searchMovies = item.title">{{ item.title }}</div>
+          </router-link>
+        </span>
+      </div>
       <br /><br />
       <div class="tags">
         <!-- "Action",
@@ -39,13 +47,6 @@
         </p>
       </div>
 
-      <div v-if="searchMovies !== ''" class="autocomplete-popup">
-        <span v-for="item in getDataFilter" :key="item.id">
-          <router-link :to="{ name: 'Detail', params: { id: item.id } }">
-            <div @click="searchMovies = item.title">{{ item.title }}</div>
-          </router-link>
-        </span>
-      </div>
       <div id="movie-list">
         <div class="movie-card">
           <ul style="list-style-type: none">
@@ -86,6 +87,7 @@ export default {
       totalGenres: [],
       mergedArr: [],
       listArr: [],
+      resultArr: [],
     };
   },
   props: {},
