@@ -33,15 +33,6 @@
       </div>
       <br /><br />
       <div class="tags">
-        <!-- "Action",
-        "Adventure",
-        "Crime",
-        "Comedy",
-        "Drama",
-        "Fantasy",
-        "Horror",
-        "Science Fiction",
-        "Thriller", -->
         <p v-for="genre in listArr" :key="genre" @click="bring(genre)">
           {{ genre }}
         </p>
@@ -88,6 +79,7 @@ export default {
       mergedArr: [],
       listArr: [],
       resultArr: [],
+      myTarget: [],
     };
   },
   props: {},
@@ -99,6 +91,7 @@ export default {
     this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
     let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
     console.log(myTarget);
+    this.myTarget = myTarget;
     var totalGenres = [...new Set(myGenres)];
 
     console.log("total genres: ", totalGenres);
@@ -112,12 +105,20 @@ export default {
     this.listArr = [...uniqueArr].sort();
     // let target_copy = Object.assign({}, this.listArr);
     // console.log("target copy is: ", Object.values(target_copy));
-    console.log(this.listArr);
+    console.log("listArr: ", this.listArr);
   },
 
   methods: {
     bring(genre) {
       console.log(genre, "clicked");
+      let myArray = JSON.parse(JSON.stringify(this.myTarget));
+      let sortedArr = [];
+      for (let index = 0; index < myArray.length; index++) {
+        if (myArray[index].genres.includes(genre)) {
+          sortedArr.push(myArray[index]);
+        }
+      }
+      this.randomMovies = sortedArr;
     },
 
     sortAlphabet() {
@@ -335,11 +336,15 @@ figcaption {
   flex-direction: column;
   align-items: flex-start;
   border: 1px solid #eee;
+  span:hover {
+    background-color: #04aa6d;
+  }
   a {
     color: #f3f3f3;
 
     &:hover {
-      color: yellow;
+      color: #fff;
+      font-size: large;
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
   }
