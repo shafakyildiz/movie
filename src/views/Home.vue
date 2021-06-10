@@ -35,15 +35,18 @@
         <div class="movie-card">
           <ul style="list-style-type: none">
             <li v-for="item in randomMovies" :key="item.id">
-              <router-link :to="{ name: 'Detail', params: { id: item.id } }">
-                <img :src="item.poster.toString()" />
-              </router-link>
+              <div class="image-container">
+                <router-link :to="{ name: 'Detail', params: { id: item.id } }">
+                  <img :src="item.poster.toString()" />
+                </router-link>
 
-              <figcaption>
-                <h2>
-                  {{ item.title }}
-                </h2>
-              </figcaption>
+                <figcaption>
+                  <p>
+                    {{ item.title }}
+                  </p>
+                </figcaption>
+              </div>
+
               <br />
             </li>
           </ul>
@@ -194,6 +197,27 @@ export default {
 </script>
 
 <style lang="scss">
+ul {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: 20%;
+    padding: 10px;
+  }
+}
+.image-container {
+  width: 100%;
+  height: 100%;
+  img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: auto;
+  }
+}
 /* Dropdown Button */
 .dropbtn {
   background-color: #04aa6d;
@@ -244,6 +268,11 @@ export default {
 
 figcaption {
   text-align: center;
+  p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
 }
 .autocomplete-popup {
   width: 30%;
