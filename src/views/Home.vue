@@ -103,6 +103,9 @@ export default {
     this.mergedArr = [].concat.apply([], totalGenres);
     this.totalGenres = [...new Set(this.mergedArr)];
     let uniqueArr = JSON.parse(JSON.stringify(this.totalGenres));
+    uniqueArr = uniqueArr.filter(function (el) {
+      return el != null;
+    });
     console.log("unique arr:", uniqueArr);
     this.listArr = [...uniqueArr].sort();
     // let target_copy = Object.assign({}, this.listArr);
