@@ -22,9 +22,10 @@
             <a href="#" @click="sortIdAsc">ID'ye göre (Azalan)</a>
           </div>
         </div>
-        <br /><br />
-        <div class="tags">
-          <!-- "Action",
+      </div>
+      <br /><br />
+      <div class="tags">
+        <!-- "Action",
         "Adventure",
         "Crime",
         "Comedy",
@@ -33,11 +34,11 @@
         "Horror",
         "Science Fiction",
         "Thriller", -->
-          <p v-for="genre in listArr" :key="genre" @click="bring(genre)">
-            {{ genre }}
-          </p>
-        </div>
+        <p v-for="genre in listArr" :key="genre" @click="bring(genre)">
+          {{ genre }}
+        </p>
       </div>
+
       <div v-if="searchMovies !== ''" class="autocomplete-popup">
         <span v-for="item in getDataFilter" :key="item.id">
           <router-link :to="{ name: 'Detail', params: { id: item.id } }">
@@ -240,6 +241,7 @@ export default {
   }
   p:hover {
     background-color: #3e8e41;
+    cursor: pointer;
   }
 }
 ul {
