@@ -23,6 +23,20 @@
           </div>
         </div>
         <br /><br />
+        <div class="tags">
+          <!-- "Action",
+        "Adventure",
+        "Crime",
+        "Comedy",
+        "Drama",
+        "Fantasy",
+        "Horror",
+        "Science Fiction",
+        "Thriller", -->
+          <p v-for="genre in listArr" :key="genre" @click="bring(genre)">
+            {{ genre }}
+          </p>
+        </div>
       </div>
       <div v-if="searchMovies !== ''" class="autocomplete-popup">
         <span v-for="item in getDataFilter" :key="item.id">
@@ -66,19 +80,40 @@ export default {
       movies1: movies,
       searchMovies: "",
       randomMovies: [],
+      genres: [],
+      myGenres: [],
+      totalGenres: [],
+      mergedArr: [],
+      listArr: [],
     };
   },
   props: {},
 
   mounted() {
     this.movie = movies.map((item) => item.title);
-    // console.log((this.movie = movies.slice(0, 20).map((item) => item.title)));
+    let myGenres = movies.map((item) => item.genres);
+    this.genres = this.genres.push(myGenres.map((genre) => genre));
     this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
     let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
     console.log(myTarget);
+    var totalGenres = [...new Set(myGenres)];
+
+    console.log("total genres: ", totalGenres);
+    this.mergedArr = [].concat.apply([], totalGenres);
+    this.totalGenres = [...new Set(this.mergedArr)];
+    let uniqueArr = JSON.parse(JSON.stringify(this.totalGenres));
+    console.log("unique arr:", uniqueArr);
+    this.listArr = [...uniqueArr].sort();
+    // let target_copy = Object.assign({}, this.listArr);
+    // console.log("target copy is: ", Object.values(target_copy));
+    console.log(this.listArr);
   },
 
   methods: {
+    bring(genre) {
+      console.log(genre, "clicked");
+    },
+
     sortAlphabet() {
       this.movie = movies.map((item) => item.title);
 
@@ -197,6 +232,16 @@ export default {
 </script>
 
 <style lang="scss">
+.tags {
+  display: flex;
+  flex-direction: row;
+  p {
+    color: #fff;
+  }
+  p:hover {
+    background-color: #3e8e41;
+  }
+}
 ul {
   width: 100%;
   height: auto;
