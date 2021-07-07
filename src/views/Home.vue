@@ -94,18 +94,13 @@ export default {
     this.myTarget = myTarget;
     var totalGenres = [...new Set(myGenres)];
 
-    console.log("total genres: ", totalGenres);
     this.mergedArr = [].concat.apply([], totalGenres);
     this.totalGenres = [...new Set(this.mergedArr)];
     let uniqueArr = JSON.parse(JSON.stringify(this.totalGenres));
-    uniqueArr = uniqueArr.filter(function (el) {
+    uniqueArr = uniqueArr.filter(function(el) {
       return el != null;
     });
-    console.log("unique arr:", uniqueArr);
     this.listArr = [...uniqueArr].sort();
-    // let target_copy = Object.assign({}, this.listArr);
-    // console.log("target copy is: ", Object.values(target_copy));
-    console.log("listArr: ", this.listArr);
   },
 
   methods: {
@@ -128,7 +123,7 @@ export default {
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
       console.log(myTarget);
-      myTarget.sort(function (a, b) {
+      myTarget.sort(function(a, b) {
         // sort alphabetically
         var nameA = a.title.toUpperCase(); // ignore upper and lowercase
         var nameB = b.title.toUpperCase(); // ignore upper and lowercase
@@ -153,7 +148,7 @@ export default {
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
       console.log(myTarget);
-      myTarget.sort(function (a, b) {
+      myTarget.sort(function(a, b) {
         var nameA = a.title.toUpperCase(); // ignore upper and lowercase
         var nameB = b.title.toUpperCase(); // ignore upper and lowercase
         if (nameA > nameB) {
@@ -177,7 +172,7 @@ export default {
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
       console.log(myTarget);
-      myTarget.sort(function (a, b) {
+      myTarget.sort(function(a, b) {
         return a.release_date - b.release_date;
       });
       this.randomMovies = myTarget;
@@ -191,7 +186,7 @@ export default {
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
       console.log(myTarget);
-      myTarget.sort(function (a, b) {
+      myTarget.sort(function(a, b) {
         return b.release_date - a.release_date;
       });
       this.randomMovies = myTarget;
@@ -204,7 +199,7 @@ export default {
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
       console.log(myTarget);
-      myTarget.sort(function (a, b) {
+      myTarget.sort(function(a, b) {
         return a.id - b.id;
       });
       this.randomMovies = myTarget;
@@ -218,7 +213,7 @@ export default {
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
       console.log(myTarget);
-      myTarget.sort(function (a, b) {
+      myTarget.sort(function(a, b) {
         return b.id - a.id;
       });
       this.randomMovies = myTarget;
@@ -273,6 +268,9 @@ ul {
 }
 /* Dropdown Button */
 .dropbtn {
+  height: 32px;
+  display: flex;
+  align-items: center;
   background-color: #04aa6d;
   color: white;
   padding: 16px;
@@ -358,6 +356,20 @@ figcaption {
   width: 100%;
   align-items: center;
   justify-content: center;
+
+  .input-sort {
+    display: flex;
+    align-items: center;
+    width: auto;
+
+    input {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      outline: none;
+      padding: 4px 8px 4px 6px;
+    }
+  }
 }
 button {
   display: flex;
@@ -423,6 +435,8 @@ button {
     padding: 16px;
 
     input {
+      width: auto;
+      height: 32px;
       display: block;
       appearance: none;
       border: none;

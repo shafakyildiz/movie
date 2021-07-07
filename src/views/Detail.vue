@@ -27,16 +27,6 @@ export default {
     this.movie = movies.filter((movie) => movie.id === id)[0];
   },
 
-  methods: {
-    // showMovie() {
-    //   axios
-    //     .get(`http://www.omdbapi.com/?apikey=553c1f83&s=${this.searchMovies}`)
-    //     .then((response) => {
-    //       console.log(response.data.Search[0]);
-    //     });
-    // },
-  },
-
   computed: {
     getDataFilter() {
       return this.movies1.filter(
@@ -48,7 +38,6 @@ export default {
     },
   },
 };
-</script> 
+</script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
