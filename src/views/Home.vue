@@ -276,6 +276,7 @@ ul {
   padding: 16px;
   font-size: 16px;
   border: none;
+  flex: 3;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -368,6 +369,7 @@ figcaption {
       height: 32px;
       outline: none;
       padding: 4px 8px 4px 6px;
+      flex: 5;
     }
   }
 }
