@@ -90,7 +90,6 @@ export default {
     this.genres = this.genres.push(myGenres.map((genre) => genre));
     this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
     let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
-    console.log(myTarget);
     this.myTarget = myTarget;
     var totalGenres = [...new Set(myGenres)];
 
@@ -105,7 +104,6 @@ export default {
 
   methods: {
     bring(genre) {
-      console.log(genre, "clicked");
       let myArray = JSON.parse(JSON.stringify(this.myTarget));
       let sortedArr = [];
       for (let index = 0; index < myArray.length; index++) {
@@ -122,7 +120,6 @@ export default {
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
-      console.log(myTarget);
       myTarget.sort(function(a, b) {
         // sort alphabetically
         var nameA = a.title.toUpperCase(); // ignore upper and lowercase
@@ -147,7 +144,6 @@ export default {
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
-      console.log(myTarget);
       myTarget.sort(function(a, b) {
         var nameA = a.title.toUpperCase(); // ignore upper and lowercase
         var nameB = b.title.toUpperCase(); // ignore upper and lowercase
@@ -171,7 +167,6 @@ export default {
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
-      console.log(myTarget);
       myTarget.sort(function(a, b) {
         return a.release_date - b.release_date;
       });
@@ -185,7 +180,6 @@ export default {
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
-      console.log(myTarget);
       myTarget.sort(function(a, b) {
         return b.release_date - a.release_date;
       });
@@ -198,7 +192,6 @@ export default {
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
-      console.log(myTarget);
       myTarget.sort(function(a, b) {
         return a.id - b.id;
       });
@@ -212,7 +205,6 @@ export default {
       this.randomMovies = this.movies1.slice(0, 20).map((item) => item);
       let myTarget = JSON.parse(JSON.stringify(this.randomMovies));
 
-      console.log(myTarget);
       myTarget.sort(function(a, b) {
         return b.id - a.id;
       });
@@ -254,6 +246,7 @@ ul {
   li {
     width: 20%;
     padding: 10px;
+    min-width: 15rem;
   }
 }
 .image-container {
