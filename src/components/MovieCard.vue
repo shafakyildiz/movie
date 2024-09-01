@@ -34,10 +34,11 @@ h3,
 }
 
 .movie-overview {
-  width: 40%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  line-height: 1.6;
 }
 </style>
